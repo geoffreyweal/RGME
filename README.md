@@ -20,7 +20,8 @@ This program requires Fortran and Python3 to run.
 To install this program, perform the following in your terminal
 
 1. Change directory into the directory that you want to place this program in.
-2. Type into the terminal ``git clone https://github.com/geoffreyweal/RGME.git``. This will download the RGME program into the current directory
+2. Type into the terminal ``git clone https://github.com/geoffreyweal/RGME.git``. This will download the RGME program into the current directory.
+3. Type into the terminal ``chmod -R 777 RGME``. This will change the permissions of this program so that your computer can run this program.
 3. Type into the terminal ``echo 'export PATH='"$PWD"'/RGME:$PATH' >> ~/.bashrc``. This will allow you computer to know where the files to run are located.
 4. Type into the terminal ``source ~/.bashrc``. This will refresh your terminal so it recognises this program.
 5. Change directory into the RGME folder: ``cd RGME``

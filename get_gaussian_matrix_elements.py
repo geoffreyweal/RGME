@@ -35,6 +35,10 @@ print('Running readmat8 program on: '+str(filepath))
 print('Saving raw data into '+str(matrix_elements_foldername+'/'+data_filename))
 with open(matrix_elements_foldername+'/'+data_filename, "w") as outfile:
 	result = run([path_to_readmat8, str(filepath)], stdout=outfile)
+if not result.returncode == 0:
+	print('ERROR: There was a problem when running the readmat8 program on '+str(filepath))
+	print('Go to '+matrix_elements_foldername+'/'+data_filename+' To read what the error was.')
+	exit('This program will finish UNSUCCESSFULLY.')
 print('Finished running readmat8 program')
 
 # Sixth, extract the data from matrix_element_output.txt and save the matrices as csv files.
