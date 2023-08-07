@@ -92,9 +92,9 @@ This is still a new program and files may not be created properly. Where possibl
 ## Useful Gaussian ``.gjf`` Inputs
 
 * You want to obtain the quadrupole, octupole, or hexadecapole integral matrices for your system (https://gaussian.com/overlay3/#iop_(3/36)): 
-	* Quadrupole: include ``IOp(3/36=2)`` in your Gaussian ``.gjf`` file.
-	* Octupole: include ``IOp(3/36=3)`` in your Gaussian ``.gjf`` file.
-	* Hexadecapole:include ``IOp(3/36=4)`` in your Gaussian ``.gjf`` file.
+	* Quadrupole: Include ``IOp(3/36=2)`` in your Gaussian ``.gjf`` file.
+	* Octupole: Include ``IOp(3/36=3)`` in your Gaussian ``.gjf`` file.
+	* Hexadecapole: Include ``IOp(3/36=4)`` in your Gaussian ``.gjf`` file.
 
 ## Issues
 
