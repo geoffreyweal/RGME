@@ -13,7 +13,7 @@ from subprocess import run
 from extract_matrix_data import extract_data
 
 # Second, establish file and program paths. 
-filepath = os.path.abspath(sys.argv[1])
+filepath = sys.argv[1]
 program_path = os.path.dirname(__file__)
 
 # Third, create the folder to save csv and other files to created during the running of this program.
