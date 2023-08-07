@@ -106,8 +106,8 @@ Issues: https://github.com/geoffreyweal/RGME/issues
 
 <div align="center">
 
-|:----------------------:|:-------------------------------------------------------------:|
 | Repositories | [![GitHub release (latest by date)](https://img.shields.io/github/v/release/geoffreyweal/RGME)](https://github.com/geoffreyweal/RGME) |
+|:----------------------:|:-------------------------------------------------------------:|
 | License | [![Licence](https://img.shields.io/github/license/geoffreyweal/RGME)](https://www.gnu.org/licenses/agpl-3.0.en.html) |
 | Authors | Dr. Geoffrey Weal, Dr. Paul Hume, Prof. Justin Hodgkiss |
 | Group Websites | https://people.wgtn.ac.nz/paul.hume/grants, https://people.wgtn.ac.nz/justin.hodgkiss/grants |
