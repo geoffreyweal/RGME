@@ -4,7 +4,7 @@ extract_matrix_data.py, Geoffrey Weal, 5/8/23
 This script contains methods for extracting the matrix data from the output from readmat8 that can be saved into csv files.
 """
 
-from supplementary_methods import save_data, append_data, save_matrix_data, datatypes, entrylengths
+from supplementary_methods import save_data, append_data, save_matrix_data, get_type, entrylengths
 
 def extract_data(data_filename, matrix_elements_foldername):
 	"""
@@ -154,13 +154,13 @@ def extract_non_matrix_data(split_line, data):
 					# Record value0 as the saving_variable to save into data
 					saving_variable = value0
 
-				elif datatypes[saving_variable] == 'string':
+				elif get_type(saving_variable) == 'string':
 
 					# value0 is matrix information. Record it. 
 					if saving_variable not in data:
-						data[saving_variable]  = save_data(value, datatypes[saving_variable])
+						data[saving_variable]  = save_data(value, get_type(saving_variable))
 					else:
-						data[saving_variable] += append_data(value,  datatypes[saving_variable])
+						data[saving_variable] += append_data(value, get_type(saving_variable))
 
 				else:
 
@@ -172,17 +172,17 @@ def extract_non_matrix_data(split_line, data):
 				if value == '':
 					continue
 				if saving_variable not in data:
-					data[saving_variable]  = save_data(value, datatypes[saving_variable])
+					data[saving_variable]  = save_data(value, get_type(saving_variable))
 				else:
-					data[saving_variable] += append_data(value,  datatypes[saving_variable])
+					data[saving_variable] += append_data(value, get_type(saving_variable))
 
 		else:
 
 			# 2.4: Save the matrix data into the data dictionary. 
 			if saving_variable not in data:
-				data[saving_variable]  = save_data(values, datatypes[saving_variable])
+				data[saving_variable]  = save_data(values, get_type(saving_variable))
 			else:
-				data[saving_variable] += append_data(values,  datatypes[saving_variable])
+				data[saving_variable] += append_data(values, get_type(saving_variable))
 
 # ============================================================================================================
 

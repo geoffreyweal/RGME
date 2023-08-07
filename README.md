@@ -25,7 +25,7 @@ To install this program, perform the following in your terminal
 3. Type into the terminal ``echo 'export PATH='"$PWD"'/RGME:$PATH' >> ~/.bashrc``. This will allow you computer to know where the files to run are located.
 4. Type into the terminal ``source ~/.bashrc``. This will refresh your terminal so it recognises this program.
 5. Change directory into the RGME folder: ``cd RGME``
-6. Run the bash script called ``setup_GauOpen.sh``: ``bash setup_GauOpen.sh``. This will compile the ``readmat8`` Gaussian program that this RGME program will use. See below for more information about this script. 
+6. Run the bash script called ``setup_GauOpen.sh``: ``bash setup_GauOpen.sh``. This will down the ``gauopen_v2`` program and compile the ``readmat8`` Gaussian program. This ``readmat8`` program is used by RGME. See below for more information about this script. 
 
 ### The ``setup_GauOpen.sh`` script
 
@@ -85,9 +85,15 @@ where ``matrix_data.txt`` is the file that the matrix data from Gaussian was rec
 
 You will now see that there is a new folder called ``MatrixElementsFiles``. This folder will create a number of csv files that contain the matrix data that could be obtained from the ``matrix_data.txt`` file. 
 
+### 4. Check the Data in ``MatrixElementsFiles`` Makes Sense
+
+This is still a new program and files may not be created properly. Where possible, check however you can that the data make sense to you. If it doesn't, create an issue in the Github Issues Page for this program and write the problem(s) you have in here: https://github.com/geoffreyweal/RGME/issues
+
 ## Issues
 
 This program is definitely a "work in progress". I have made it as easy to use as possible, but there are always oversights to program development and some parts of it may not be as easy to use as it could be. If you have any issues with the program or you think there would be better/easier ways to use and implement things in RGME, create a notice in the Github Issues section. Feedback is very much welcome!
+
+Issues: https://github.com/geoffreyweal/RGME/issues
 
 ## About
 

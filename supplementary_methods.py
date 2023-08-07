@@ -54,6 +54,21 @@ datatypes['LenBuf']  = 'integer'
 datatypes['N']       = 'integer list'
 datatypes['ASym']    = 'string'
 
+def get_type(variable):
+	"""
+	This method will return the data type for the input variable
+
+	Parameters
+	----------
+	variable: str.
+		This is the variable you want to obtain
+	datatypes : str.
+		This is the datatype for this variable
+	"""
+	if variable is None:
+		raise Exception('Error: No Datatype given. This may be caused by readmat8 not running correcting.\nCheck your input file and newly created MatrixElementsFiles/matrix_element_output.txt file to see if they are empty or not, or if they specify errors in the file. Report any issues to Github Issues.\nThis program will finish unsucessfully.')
+	return datatypes[variable]
+
 labelnames = {}
 labelnames['DIPOLE_INTEGRALS'] = ['X', 'Y', 'Z']
 labelnames['QUADRUPOLE_INTEGRALS'] = ['XX', 'YY', 'ZZ', 'XY', 'XZ', 'YZ']
