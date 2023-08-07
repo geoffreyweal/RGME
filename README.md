@@ -106,7 +106,6 @@ Issues: https://github.com/geoffreyweal/RGME/issues
 
 <div align="center">
 
-| Python | [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/RGME)](https://docs.python.org/3/) | 
 |:----------------------:|:-------------------------------------------------------------:|
 | Repositories | [![GitHub release (latest by date)](https://img.shields.io/github/v/release/geoffreyweal/RGME)](https://github.com/geoffreyweal/RGME) |
 | License | [![Licence](https://img.shields.io/github/license/geoffreyweal/RGME)](https://www.gnu.org/licenses/agpl-3.0.en.html) |
