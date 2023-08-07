@@ -25,7 +25,7 @@ To install this program, perform the following in your terminal
 3. Type into the terminal ``echo 'export PATH='"$PWD"'/RGME:$PATH' >> ~/.bashrc``. This will allow you computer to know where the files to run are located.
 4. Type into the terminal ``source ~/.bashrc``. This will refresh your terminal so it recognises this program.
 5. Change directory into the RGME folder: ``cd RGME``
-6. Run the bash script called ``setup_GauOpen.sh``: ``bash setup_GauOpen.sh``. This will down the ``gauopen_v2`` program and compile the ``readmat8`` Gaussian program. This ``readmat8`` program is used by RGME. See below for more information about this script. 
+6. Run the bash script called ``setup_GauOpen.sh``: ``bash setup_GauOpen.sh``. This will download the ``gauopen_v2`` program from Gaussian and compile the ``readmat8`` Gaussian program. This ``readmat8`` program is used by RGME. See below for more information about this script. 
 
 ### The ``setup_GauOpen.sh`` script
 
@@ -60,7 +60,7 @@ Run your Gaussian job as you usually would. Include in the Gaussian input file t
 # nosymm ! 
 # Int=UltraFine ! This is default in G16, but here if calcs are run on other Gaussian. This splits the intergration grid into very tiny pieces (99,590 grid points).
 # maxdisk=2TB scf=(xqc,maxcycle=512)
-# density(check) geom=check output=(MatrixElement) IOp(3/36=2)
+# density(check) geom=check output=(MatrixElement)
 
 Gaussian input prepared by ASE: Reorganisation Energy Job
 
@@ -88,6 +88,13 @@ You will now see that there is a new folder called ``MatrixElementsFiles``. This
 ### 4. Check the Data in ``MatrixElementsFiles`` Makes Sense
 
 This is still a new program and files may not be created properly. Where possible, check however you can that the data make sense to you. If it doesn't, create an issue in the Github Issues Page for this program and write the problem(s) you have in here: https://github.com/geoffreyweal/RGME/issues
+
+## Useful Gaussian ``.gjf`` Inputs
+
+* You want to obtain the quadrupole, octupole, or hexadecapole integral matrices for your system (https://gaussian.com/overlay3/#iop_(3/36)): 
+	* Quadrupole: include ``IOp(3/36=2)`` in your Gaussian ``.gjf`` file.
+	* Octupole: include ``IOp(3/36=3)`` in your Gaussian ``.gjf`` file.
+	* Hexadecapole:include ``IOp(3/36=4)`` in your Gaussian ``.gjf`` file.
 
 ## Issues
 

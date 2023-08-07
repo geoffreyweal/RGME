@@ -4,7 +4,8 @@ extract_matrix_data.py, Geoffrey Weal, 5/8/23
 This script contains methods for extracting the matrix data from the output from readmat8 that can be saved into csv files.
 """
 
-from supplementary_methods import save_data, append_data, save_matrix_data, get_type, entrylengths
+from save_matrix_data      import save_matrix_data
+from supplementary_methods import save_data, append_data, get_infotypes, get_datatype, entrylengths
 
 def extract_data(data_filename, matrix_elements_foldername):
 	"""
@@ -36,9 +37,9 @@ def extract_data(data_filename, matrix_elements_foldername):
 				data = {}
 
 			# Third, obtain the data from the line and import it into the data dictionary. 
-			is_matrix_data, character_datatype = determine_matrix_data(line)
+			is_matrix_data, infotype = determine_matrix_data(line)
 			if is_matrix_data:
-				extract_matrix_data(line, character_datatype, data)
+				extract_matrix_data(line, infotype, data)
 			else:
 				extract_non_matrix_data(split_line, data)
 
@@ -52,7 +53,7 @@ def extract_data(data_filename, matrix_elements_foldername):
 
 # ============================================================================================================
 
-def extract_matrix_data(line, character_datatype, data):
+def extract_matrix_data(line, infotype_with_equals, data):
 	"""
 	This method is designed to gather matrix information from the Gaussian datafile.
 
@@ -60,20 +61,20 @@ def extract_matrix_data(line, character_datatype, data):
 	----------
 	line : str.
 		This is the line from the Gaussian datafile to process.
-	character_datatype : str.
-		This is the datatype that is being processed. 
+	infotype_with_equals : str.
+		This is the information type that is being processed. This will end with a = sign
 	data : dict.
 		This dictionary stores all the data that has been extracted from the Gaussian datafile.
 	"""
 
 	# First, obtain the variable to save the data into the data dictionary. 
-	saving_variable = character_datatype.replace('=','')
+	infotype = infotype_with_equals.replace('=','')
 
-	# Second, remove the saving_variable from the line. 
-	new_line = line.rstrip().split(character_datatype)[1]
+	# Second, remove the infotype from the line. 
+	new_line = line.rstrip().split(infotype_with_equals)[1]
 
-	# Third, obtain the entry length as based on the datatype given by saving_variable
-	entrylength = entrylengths[saving_variable]
+	# Third, obtain the entry length as based on the datatype given by infotype
+	entrylength = entrylengths[infotype]
 
 	# Fourth, obtain the total number of indices to scan over, as well as the modulus 
 	total_index, mod_index = divmod(len(new_line), entrylength)
@@ -93,10 +94,10 @@ def extract_matrix_data(line, character_datatype, data):
 		value = new_line[start_index:end_index]
 
 		# 6.3: Save the entry into the data dictionary. 
-		if saving_variable not in data:
-			data[saving_variable]  = save_data(value, datatypes[saving_variable])
+		if infotype not in data:
+			data[infotype]  = save_data(value, get_datatype(infotype))
 		else:
-			data[saving_variable] += append_data(value,  datatypes[saving_variable])
+			data[infotype] += append_data(value, get_datatype(infotype))
 
 # ============================================================================================================
 
@@ -112,8 +113,8 @@ def extract_non_matrix_data(split_line, data):
 		This dictionary stores all the data that has been extracted from the Gaussian datafile.
 	"""
 
-	# First, initialise the saving_variable to None. The line will contain the information about what this is as we move through the split_line list.
-	saving_variable = None
+	# First, initialise working_infotype to None. The line will contain the information about what this is as we move through the split_line list.
+	working_infotype = None
 	found_label = False
 
 	# Second, for each entry in split_line list.
@@ -122,17 +123,17 @@ def extract_non_matrix_data(split_line, data):
 		# 2.1: If values == 'Label', indicate we are recording the Label for this matrix data.
 		if   values == 'Label':
 			found_label = True
-			saving_variable = 'Label'
+			working_infotype = 'Label'
 			continue
 		else:
 			initial_valuename = values.split('=')[0]
-			if found_label and (initial_valuename in datatypes.keys()):
+			if found_label and (initial_valuename in get_infotypes()):
 				print(data['Label'])
 				found_label = False
 
 		# 2.2: If values == 'Title', indicate we are recording the Title for this matrix data.
 		if values == 'Title':
-			saving_variable = 'Title'
+			working_infotype = 'Title'
 
 		elif '=' in values:
 			# 2.3: If values contains a = is it. this probably means we are dealling with a datatype to record. 
@@ -149,18 +150,18 @@ def extract_non_matrix_data(split_line, data):
 				value0 = values.pop(0)
 
 				# 2.3.1.2.2: Determine what to do with the first instance in values, being value0.
-				if value0 in datatypes.keys():
+				if value0 in get_infotypes():
 
-					# Record value0 as the saving_variable to save into data
-					saving_variable = value0
+					# Record value0 as the working_infotype to save into data
+					working_infotype = value0
 
-				elif get_type(saving_variable) == 'string':
+				elif get_datatype(working_infotype) == 'string':
 
 					# value0 is matrix information. Record it. 
-					if saving_variable not in data:
-						data[saving_variable]  = save_data(value, get_type(saving_variable))
+					if working_infotype not in data:
+						data[working_infotype]  = save_data(value, get_datatype(working_infotype))
 					else:
-						data[saving_variable] += append_data(value, get_type(saving_variable))
+						data[working_infotype] += append_data(value, get_datatype(working_infotype))
 
 				else:
 
@@ -171,18 +172,18 @@ def extract_non_matrix_data(split_line, data):
 			for value in values:
 				if value == '':
 					continue
-				if saving_variable not in data:
-					data[saving_variable]  = save_data(value, get_type(saving_variable))
+				if working_infotype not in data:
+					data[working_infotype]  = save_data(value, get_datatype(working_infotype))
 				else:
-					data[saving_variable] += append_data(value, get_type(saving_variable))
+					data[working_infotype] += append_data(value, get_datatype(working_infotype))
 
 		else:
 
 			# 2.4: Save the matrix data into the data dictionary. 
-			if saving_variable not in data:
-				data[saving_variable]  = save_data(values, get_type(saving_variable))
+			if working_infotype not in data:
+				data[working_infotype]  = save_data(values, get_datatype(working_infotype))
 			else:
-				data[saving_variable] += append_data(values, get_type(saving_variable))
+				data[working_infotype] += append_data(values, get_datatype(working_infotype))
 
 # ============================================================================================================
 
