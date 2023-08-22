@@ -19,7 +19,7 @@ def extract_data(data_filename, matrix_elements_foldername):
 		This is the foldername to save the matrix csv data into, and where data_filename is stored.
 	"""
 
-	data = {}
+	labels = []; all_filepaths = []; data = {}
 	with open(matrix_elements_foldername+'/'+data_filename, "r") as outfile:
 		for line in outfile:
 
@@ -33,7 +33,11 @@ def extract_data(data_filename, matrix_elements_foldername):
 				continue
 			elif split_line[0] == 'Label':
 				if not (data == {}):
-					save_matrix_data(data, matrix_elements_foldername)
+					label, filepaths = save_matrix_data(data, matrix_elements_foldername)
+					if label is not None:
+						labels.append(label)
+					if filepaths is not None:
+						all_filepaths += filepaths
 				data = {}
 
 			# Third, obtain the data from the line and import it into the data dictionary. 
@@ -43,13 +47,16 @@ def extract_data(data_filename, matrix_elements_foldername):
 			else:
 				extract_non_matrix_data(split_line, data)
 
-			#if 'Label' in data:
-			#	if data['Label'] == 'REAL ZEFFECTIVE':
-			#		import pdb; pdb.set_trace()
-
 	# Fourth, save the final compoent in data if this has not already been saved. 
 	if not (data == {}):
-		save_matrix_data(data, matrix_elements_foldername)
+		label, filepaths = save_matrix_data(data, matrix_elements_foldername)
+		if label is not None:
+			labels.append(label)
+		if filepaths is not None:
+			all_filepaths += filepaths
+
+	# Fifth, return all the labels
+	return labels, all_filepaths
 
 # ============================================================================================================
 

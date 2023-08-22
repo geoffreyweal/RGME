@@ -6,7 +6,7 @@ This script contains all the methods needed for the get_matrix_elements.py progr
 
 import csv
 import numpy as np
-from supplementary_methods import make_new_matrix, check_matrix, labelnames
+from supplementary_methods import make_new_matrix, check_matrix, labelnames, get_filename
 
 def save_matrix_data(data, foldername):
 	"""
@@ -23,48 +23,56 @@ def save_matrix_data(data, foldername):
 		raise Exception('Error. No Label found.')
 
 	# Second, grad the label for this matrix data, and convert white spaces to underscores
-	label = data['Label'].replace(' ','_').replace('/','_')
+	label = get_filename(data['Label'])
 
-	# Third, determine if there is an array or intergers or floats that contains information for making a matrix with. 
+	# Third, initialise the filenames list that will contain all the paths to the matrices that have been created.
+	filepaths = []
+
+	# Fourth, determine if there is an array or intergers or floats that contains information for making a matrix with. 
 	if 'IArr' in data.keys():
 		array = data['IArr']
 	elif 'RArr' in data.keys():
 		array = data['RArr']
 
-	# Fourth, obtain the information needed to convert IArr/RArr into a matrix/matrices. 
+	# Fifth, obtain the information needed to convert IArr/RArr into a matrix/matrices. 
 	if 'N' in data.keys():
 		matrix_information = data['N']
 
-	# Fifth, if you have the necessary information, create and save the matrix
+	# Sixth, if you have the necessary information, create and save the matrix
 	if (('IArr' in data.keys()) or ('RArr' in data.keys())) and ('N' in data.keys()):
 
-		# 5.1: Make the matrices from your array and the matrix information. 
+		# 6.1: Make the matrices from your array and the matrix information. 
 		matrices = convert_into_matrix(array, matrix_information, label)
 
-		# 5.2: If matrices is a NoneType, ignore this data dictionary and move on, we dont want to record this matrix data.
+		# 6.2: If matrices is a NoneType, ignore this data dictionary and move on, we dont want to record this matrix data.
 		if matrices is None:
-			return
+			return None, None
 
-		# 5.3: Save the data in an excel spreadsheet using pandas.
+		# 6.4: Save the data in an excel spreadsheet using pandas.
 		if len(matrices) == 1:
 
-			# 5.3.1: Save the matrix as a csv file.
-			save_matrix_as_csv(matrices[0], label, foldername)
+			# 5.4.1: Save the matrix as a csv file.
+			filepath = save_matrix_as_csv(matrices[0], label, foldername)
+			filepaths.append(filepath)
 
 		else:
 
-			# 5.3.2: Obtain the names to name each of the matrices
+			# 6.4.2: Obtain the names to name each of the matrices
 			if label in labelnames:
 				if not (len(labelnames[label]) == len(matrices)):
 					print('Error: Number of matrices for '+str(label)+' does not match expected from labelnames.\nNo of matrices: '+str(len(matrices))+'\nNumber of matrices expected (from labelnames): '+str(len(labelnames[label]))+'\nExpected matrices (from labelnames): '+str(labelnames[label]))
-					import pdb; pdb.set_trace()
+					#import pdb; pdb.set_trace()
 				matrice_subnames = [label+'_'+str(sublabel) for sublabel in labelnames[label]]
 			else:
 				matrice_subnames = [label+'_'+str(number) for number in range(1,len(matrices)+1)]
 
-			# 5.3.3: Save the matrix as a csv file.
+			# 6.4.3: Save the matrix as a csv file.
 			for filename, matrix in zip(matrice_subnames, matrices):
-				save_matrix_as_csv(matrix, filename, foldername)
+				filepath = save_matrix_as_csv(matrix, filename, foldername)
+				filepaths.append(filepath)
+
+	# Seventh, return the dirnames of the newly created matrices
+	return label, filepaths
 
 # ===============================================================================================================================================
 
@@ -181,7 +189,7 @@ def convert_into_matrix(array, matrix_information, label):
 	no_of_matrices = matrix_information[2] * matrix_information[3] * matrix_information[4]
 	if not (len(matrices) == no_of_matrices):
 		print('Error: Number of matrices for '+str(label)+' does not match expected.\nNo of matrices: '+str(len(matrices))+'\nNumber of matrices expected: '+str(no_of_matrices)+'\nmatrix_information: '+str(matrix_information))
-		import pdb; pdb.set_trace()
+		#import pdb; pdb.set_trace()
 
 	# Fifth, return matrices.
 	return matrices
@@ -210,6 +218,7 @@ def save_matrix_as_csv(matrix, filename, dirpath):
 				csv_writer.writerow(row)
 		else:
 			raise Exception('Error: Matrix is not 1D or 2D.\nMatrix dimensions: '+str(matrix.ndim))
+	return dirpath+'/'+filename+'.csv'
 
 # ===============================================================================================================================================
 

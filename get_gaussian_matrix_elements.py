@@ -10,7 +10,8 @@ This program is designed to convert the data from "output=(MatrixElement)" gjf i
 import os, sys
 from shutil import rmtree
 from subprocess import run
-from extract_matrix_data import extract_data
+from extract_matrix_data   import extract_data
+from supplementary_methods import get_filename
 
 # Second, establish file and program paths. 
 filepath = sys.argv[1]
@@ -36,13 +37,28 @@ print('Saving raw data into '+str(matrix_elements_foldername+'/'+data_filename))
 with open(matrix_elements_foldername+'/'+data_filename, "w") as outfile:
 	result = run([path_to_readmat8, str(filepath)], stdout=outfile)
 if not result.returncode == 0:
+	print()
+	print('================================================================================')
 	print('ERROR: There was a problem when running the readmat8 program on '+str(filepath))
 	print('Go to '+matrix_elements_foldername+'/'+data_filename+' To read what the error was.')
-	exit('This program will finish UNSUCCESSFULLY.')
+	print('Will print what matrics has been obtained and that are confidently completed')
+	#exit('This program will finish UNSUCCESSFULLY.')
+	print('================================================================================')
+	print()
 print('Finished running readmat8 program')
 
 # Sixth, extract the data from matrix_element_output.txt and save the matrices as csv files.
 print('Extracting data into CSV files')
-extract_data(data_filename, matrix_elements_foldername)
+labels, all_filepaths = extract_data(data_filename, matrix_elements_foldername)
 print('\nFinished extracting data into CSV files')
 
+# Seventh, if the last matrix name does not end with End, remove it because it may not be complete
+if len(labels) > 0:
+	last_label = labels[-1]
+	if not last_label == 'END':
+		filepath_to_remove = all_filepaths[-1]
+		if os.path.exists(filepath_to_remove):
+			print('Warning: Removing '+str(filepath_to_remove)+'. Can not be sure that this file has been fully completed.')
+			os.remove(filepath_to_remove)
+		else:
+			print('Warning: could not find potetnially error file: '+str(filepath_to_remove))

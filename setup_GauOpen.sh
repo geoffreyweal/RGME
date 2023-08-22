@@ -2,8 +2,8 @@
 
 # ====================================
 # Load modules
-module load gcc/8.2.0
-module load python/3.7.3
+module load GCC/10.3.0
+module load python/3.9.5-bare
 
 # ====================================
 # Download GauOpen v2

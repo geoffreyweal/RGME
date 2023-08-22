@@ -88,6 +88,12 @@ entrylengths['RArr'] = 12
 
 # ===============================================================================================================================================
 
+def get_filename(dataname):
+	"""
+	This method will update the label name that will be saved as a filename.
+	"""
+	return dataname.replace(' ','_').replace('/','_').replace('(','_').replace(')','_')
+
 def split_string_into_substrings(input_string, substring_length=1):
 	"""
 	This method will take the input string and convert it into substrings of size given by substring_length.
@@ -180,7 +186,11 @@ def append_data(variable, datatype):
 	if   datatype == 'string':
 		return ' '+str(variable)
 	elif datatype == 'integer list':
-		return [int(variable)]
+		try:
+			return [int(variable)]
+		except Exception as exception:
+			print('Warning: Integer was not given. variable: '+str(variable))
+			return [str(variable)]
 	elif datatype == 'float list':
 		#variables = split_string_into_substrings(variable, substring_length=8)
 		#return [float(variable) for variable in variables]
