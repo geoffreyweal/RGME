@@ -103,7 +103,7 @@ matrix_data.dat
 Run the RGME program in the terminal. Do this by running the following command in te terminal:
 
 ``` bash
-get_gaussian_matrix_elements.py matrix_data.txt
+get_gaussian_matrix_elements.py matrix_data.dat
 ```
 
 where ``matrix_data.txt`` is the file that the matrix data from Gaussian was recorded into.
