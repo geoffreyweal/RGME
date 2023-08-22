@@ -49,7 +49,33 @@ The Fortran compiler used in this example is GCC. Change this to your Fortran co
 ### 1: Run Gaussian
 
 Run your Gaussian job as you usually would. Include in the Gaussian input file the input ``output=(MatrixElement)
-``. At the bottom of your file, include the name of the file you want Gaussian to place the matrix data you desire into. An example Gaussian input file is gievn below:
+``. At the bottom of your file, include the name of the file you want Gaussian to place the matrix data you desire into. **This is the recommended way**
+
+An example Gaussian input file is given below:
+
+```
+%chk=checkpoint.chk
+%nprocshared=16
+%mem=60GB
+# wB97XD/6-31+G(d,p) ! ASE formatted method and basis
+# nosymm ! 
+# Int=UltraFine ! This is default in G16, but here if calcs are run on other Gaussian. This splits the intergration grid into very tiny pieces (99,590 grid points).
+# maxdisk=2TB scf=(xqc,maxcycle=512)
+# output=(MatrixElement)
+
+Gaussian input prepared by ASE: Reorganisation Energy Job
+
+0 1
+O 1.80172602 0.06746038 0.00000000
+H 2.76172599 0.06770148 0.00000000
+H 1.48149872 0.97247667 0.00000000
+
+matrix_data.dat
+
+
+```
+
+You can also use the checkpoint file to gather this information. An example Gaussian input file is given below:
 
 ```
 %oldchk=oldcheckpoint.chk
@@ -60,13 +86,14 @@ Run your Gaussian job as you usually would. Include in the Gaussian input file t
 # nosymm ! 
 # Int=UltraFine ! This is default in G16, but here if calcs are run on other Gaussian. This splits the intergration grid into very tiny pieces (99,590 grid points).
 # maxdisk=2TB scf=(xqc,maxcycle=512)
-# density(check) geom=check output=(MatrixElement)
+# density(check) geom=check 
+# output=(MatrixElement)
 
 Gaussian input prepared by ASE: Reorganisation Energy Job
 
 0 1
 
-matrix_data.txt
+matrix_data.dat
 
 
 ```
