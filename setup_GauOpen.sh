@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 # ====================================
-# Load modules
+# Load python and gcc modules (This is specifically for Rapoi VUW computer cluster)
 module load GCC/10.3.0
 module load python/3.9.5-bare
 
