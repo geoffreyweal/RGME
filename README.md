@@ -157,6 +157,15 @@ This is still a new program and files may not be created properly. Where possibl
 	* Octupole: Include ``IOp(3/36=3)`` in your Gaussian ``.gjf`` file.
 	* Hexadecapole: Include ``IOp(3/36=4)`` in your Gaussian ``.gjf`` file.
 
+## Troubleshooting
+
+1. Check that you are able to download and unzip the gauopen_v2.zip program from Gaussian. 
+
+```
+curl https://gaussian.com/g16/gauopen_v2.zip -o gauopen_v2.zip
+unzip gauopen_v2.zip
+```
+
 ## Issues
 
 This program is definitely a "work in progress". I have made it as easy to use as possible, but there are always oversights to program development and some parts of it may not be as easy to use as it could be. If you have any issues with the program or you think there would be better/easier ways to use and implement things in RGME, create a notice in the Github Issues section. Feedback is very much welcome!
