@@ -131,7 +131,6 @@ echo "End of job"
 # ----------------------------
 ```
 
-
 ### 2: Run the RGME program
 
 Run the RGME program in the terminal. Do this by running the following command in te terminal:
