@@ -36,8 +36,9 @@ This script will download the Gaussian Interfacing program ``gauopen_v2.zip`` an
 The start of this program include ``module load`` commands that will load the Fortran compiler and Python. 
 
 ```bash
-module load gcc/8.2.0
-module load python/3.7.3
+module load GCCcore/10.3.0
+module load GCC/10.3.0
+module load Python/3.9.5
 ```
 
 This is commonly used in computer clusters like those that use the ``SLURM`` scheduler. If you dont need to include these, remove them from your ``setup_GauOpen.sh`` script. If you are installing this program on your local or personal computer, you probably dont need these, and these lines can be removed. 
