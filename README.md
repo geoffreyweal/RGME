@@ -98,7 +98,7 @@ matrix_data.dat
 
 ```
 
-If you are submitting this job with slurm, here is an example ```submit.sl``` file you can use to submit the Gaussian job to slurm (you may need to modify it to use on your slurm system)
+If you are submitting this job with slurm, here is an example ``submit.sl`` file you can use to submit the Gaussian job to slurm (you may need to modify it to use on your slurm system)
 
 ```
 #!/bin/bash -e
@@ -158,7 +158,7 @@ This is still a new program and files may not be created properly. Where possibl
 
 ## Troubleshooting
 
-1. Check that you are able to download and unzip the gauopen_v2.zip program from Gaussian. 
+1. Check that you are able to download and unzip the gauopen_v2.zip program from Gaussian. If you can't do this, you will not be able to run the ``setup_GauOpen.sh`` script during installation. 
 
 ```
 curl https://gaussian.com/g16/gauopen_v2.zip -o gauopen_v2.zip
