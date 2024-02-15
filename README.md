@@ -33,7 +33,7 @@ This script will download the Gaussian Interfacing program ``gauopen_v2.zip`` an
 
 #### Note: 
 
-The start of this program include ``module load`` commands that will load the Fortran compiler and Python. 
+The start of ``setup_GauOpen.sh`` script includes ``module load`` commands that will load the Fortran compiler and Python. 
 
 ```bash
 module load GCCcore/10.3.0
