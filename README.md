@@ -36,9 +36,9 @@ This script will download the Gaussian Interfacing program ``gauopen_v2.zip`` an
 The start of ``setup_GauOpen.sh`` script includes ``module load`` commands that will load the Fortran compiler and Python. 
 
 ```bash
-module load GCCcore/10.3.0
-module load GCC/10.3.0
-module load Python/3.9.5
+module load GCCcore/5.4.0
+module load GCC/5.4.0
+module load python/3.6.8
 ```
 
 This is commonly used in computer clusters like those that use the ``SLURM`` scheduler. If you dont need to include these, remove them from your ``setup_GauOpen.sh`` script. If you are installing this program on your local or personal computer, you probably dont need these, and these lines can be removed. 
@@ -166,7 +166,145 @@ curl https://gaussian.com/g16/gauopen_v2.zip -o gauopen_v2.zip
 unzip gauopen_v2.zip
 ```
 
-## Issues
+## Known issues
+
+### During setup I get the error --> assert parents[-3][0] == 'vars': AssertionError
+
+When setting up the ``bash setup_GauOpen.sh`` script. I get something like the following error:
+
+```
+Traceback (most recent call last):
+  File "/nfs/home/username/.local/bin/f2py3", line 8, in <module>
+    sys.exit(main())
+  File "/nfs/home/username/.local/lib/python3.8/site-packages/numpy/f2py/f2py2e.py", line 702, in main
+    run_compile()
+  File "/nfs/home/username/.local/lib/python3.8/site-packages/numpy/f2py/f2py2e.py", line 669, in run_compile
+    setup(ext_modules=[ext])
+  File "/nfs/home/username/.local/lib/python3.8/site-packages/numpy/distutils/core.py", line 169, in setup
+    return old_setup(**new_attr)
+  File "/home/software/apps/python/3.8.1/lib/python3.8/distutils/core.py", line 148, in setup
+    dist.run_commands()
+  File "/home/software/apps/python/3.8.1/lib/python3.8/distutils/dist.py", line 966, in run_commands
+    self.run_command(cmd)
+  File "/home/software/apps/python/3.8.1/lib/python3.8/distutils/dist.py", line 985, in run_command
+    cmd_obj.run()
+  File "/nfs/home/username/.local/lib/python3.8/site-packages/numpy/distutils/command/build.py", line 62, in run
+    old_build.run(self)
+  File "/home/software/apps/python/3.8.1/lib/python3.8/distutils/command/build.py", line 135, in run
+    self.run_command(cmd_name)
+  File "/home/software/apps/python/3.8.1/lib/python3.8/distutils/cmd.py", line 313, in run_command
+    self.distribution.run_command(command)
+  File "/home/software/apps/python/3.8.1/lib/python3.8/distutils/dist.py", line 985, in run_command
+    cmd_obj.run()
+  File "/nfs/home/username/.local/lib/python3.8/site-packages/numpy/distutils/command/build_src.py", line 144, in run
+    self.build_sources()
+  File "/nfs/home/username/.local/lib/python3.8/site-packages/numpy/distutils/command/build_src.py", line 161, in build_sources
+    self.build_extension_sources(ext)
+  File "/nfs/home/username/.local/lib/python3.8/site-packages/numpy/distutils/command/build_src.py", line 321, in build_extension_sources
+    sources = self.f2py_sources(sources, ext)
+  File "/nfs/home/username/.local/lib/python3.8/site-packages/numpy/distutils/command/build_src.py", line 562, in f2py_sources
+    numpy.f2py.run_main(f2py_options + ['--lower',
+  File "/nfs/home/username/.local/lib/python3.8/site-packages/numpy/f2py/f2py2e.py", line 441, in run_main
+    postlist = callcrackfortran(files, options)
+  File "/nfs/home/username/.local/lib/python3.8/site-packages/numpy/f2py/f2py2e.py", line 342, in callcrackfortran
+    postlist = crackfortran.crackfortran(files)
+  File "/nfs/home/username/.local/lib/python3.8/site-packages/numpy/f2py/crackfortran.py", line 3316, in crackfortran
+    postlist = traverse(postlist, hook)
+  File "/nfs/home/username/.local/lib/python3.8/site-packages/numpy/f2py/crackfortran.py", line 3388, in traverse
+    new_index, new_item = traverse((index, value), visit,
+  File "/nfs/home/username/.local/lib/python3.8/site-packages/numpy/f2py/crackfortran.py", line 3396, in traverse
+    new_key, new_value = traverse((key, value), visit,
+  File "/nfs/home/username/.local/lib/python3.8/site-packages/numpy/f2py/crackfortran.py", line 3388, in traverse
+    new_index, new_item = traverse((index, value), visit,
+  File "/nfs/home/username/.local/lib/python3.8/site-packages/numpy/f2py/crackfortran.py", line 3396, in traverse
+    new_key, new_value = traverse((key, value), visit,
+  File "/nfs/home/username/.local/lib/python3.8/site-packages/numpy/f2py/crackfortran.py", line 3388, in traverse
+    new_index, new_item = traverse((index, value), visit,
+  File "/nfs/home/username/.local/lib/python3.8/site-packages/numpy/f2py/crackfortran.py", line 3396, in traverse
+    new_key, new_value = traverse((key, value), visit,
+  File "/nfs/home/username/.local/lib/python3.8/site-packages/numpy/f2py/crackfortran.py", line 3396, in traverse
+    new_key, new_value = traverse((key, value), visit,
+  File "/nfs/home/username/.local/lib/python3.8/site-packages/numpy/f2py/crackfortran.py", line 3396, in traverse
+    new_key, new_value = traverse((key, value), visit,
+  File "/nfs/home/username/.local/lib/python3.8/site-packages/numpy/f2py/crackfortran.py", line 3375, in traverse
+    new_result = visit(obj, parents, result, *args, **kwargs)
+  File "/nfs/home/username/.local/lib/python3.8/site-packages/numpy/f2py/crackfortran.py", line 3434, in character_backward_compatibility_hook
+    assert parents[-3][0] == 'vars'
+AssertionError
+make: *** [qc.make:31: qcmatrixio.cpython-34m.so] Error 1
+```
+
+Potential Solution: This seems to be caused by using a too modern version of python. Here, you can see that Python 3.8.1 was used by f2py3. As you can see in the top part of the error message above: 
+
+```
+Traceback (most recent call last):
+  File "/nfs/home/username/.local/bin/f2py3", line 8, in <module>
+    sys.exit(main())
+```
+
+This is what the ```f2py3``` program looked like for this run
+
+```python
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+import re
+import sys
+from numpy.f2py.f2py2e import main
+if __name__ == '__main__':
+    sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
+    sys.exit(main())
+```
+
+However, for other people ths program changes the ```#!/usr/bin/python3``` line with ```#!/home/software/apps/python/3.8.1/bin/python3.8```. Try changing this to ```#!/usr/bin/env python3``` and run your program with Python 3.6 (or Python 3.6.8) and rerun the `bash setup_GauOpen.sh`` script:
+
+```python
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+import re
+import sys
+from numpy.f2py.f2py2e import main
+if __name__ == '__main__':
+    sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
+    sys.exit(main())
+```
+
+
+### During setup (``bash setup_GauOpen.sh``) I get the error --> /usr/bin/python3: symbol lookup error: /usr/bin/python3: undefined symbol: \_Py\_LegacyLocaleDetected
+
+This also seems to be due to running invalid versions of Python and GCC. Try using older versions of these programs, and check the ```f2py3``` program, and potentially change the first line from ``#!/usr/bin/python3`` to ``#!/usr/bin/env python3``:
+
+```python
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+import re
+import sys
+from numpy.f2py.f2py2e import main
+if __name__ == '__main__':
+    sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
+    sys.exit(main())
+```
+
+Older version of Python and GCC that worked for me
+
+```bash
+module load GCCcore/5.4.0
+module load GCC/5.4.0
+module load python/3.6.8
+```
+
+
+### During running get_gaussian_matrix_elements.py I see the error --> error while loading shared libraries: libgfortran.so.3: cannot open shared object file: No such file or directory
+
+This is likely because you are using an invalid version of Python and GCC. Try using the same version you used for setting up the ``bash setup_GauOpen.sh``. For me I used the following:
+
+```bash
+module load GCCcore/5.4.0
+module load GCC/5.4.0
+module load python/3.6.8
+```
+
+
+## Do you have new issues
 
 This program is definitely a "work in progress". I have made it as easy to use as possible, but there are always oversights to program development and some parts of it may not be as easy to use as it could be. If you have any issues with the program or you think there would be better/easier ways to use and implement things in RGME, create a notice in the Github Issues section. Feedback is very much welcome!
 
