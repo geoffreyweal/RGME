@@ -31,7 +31,7 @@ To install this program, perform the following in your terminal
 
 This script will download the Gaussian Interfacing program ``gauopen_v2.zip`` and compile the program. This will create the ``readmat8`` program that is used by RGME.
 
-#### Note: 
+#### Note 1: 
 
 The start of ``setup_GauOpen.sh`` script includes ``module load`` commands that will load the Fortran compiler and Python. 
 
@@ -45,7 +45,9 @@ This is commonly used in computer clusters like those that use the ``SLURM`` sch
 
 The Fortran compiler used in this example is GCC. Change this to your Fortran compiler if needed.
 
-NOTE: It seems to be important that you use the same version of GCC and Python to setup and run the RGME program. I.e, if you use GCC/5.4.0 and python/3.6.8 to setup us the RGME program, make sure you also load these versions of python and GCC before running the RGME (``get_gaussian_matrix_elements.py``) program. 
+#### Note 2: 
+
+It seems to be important that you use the same version of GCC and Python to setup and run the RGME program. I.e, if you use GCC/5.4.0 and python/3.6.8 to setup us the RGME program, make sure you also load these versions of python and GCC before running the RGME (``get_gaussian_matrix_elements.py``) program. 
 
 ## How To Use This Program
 
