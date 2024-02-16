@@ -28,7 +28,7 @@ gauopen_v2_filepath = 'gauopen_v2'
 readmat8_name = 'readmat8'
 path_to_readmat8 = program_path+'/'+gauopen_v2_filepath+'/'+readmat8_name
 if not os.path.exists(path_to_readmat8):
-	raise Exception('Error, you need to run the "setup_GauOpen.sh" file before running this program.\nExpected program path: '+str(path_to_readmat8))
+	raise Exception('Error, you need to run the "setup_GauOpen.sh" file before running this program.\n\nSee the RGME Github page for more information on setting up the RGME program (https://github.com/geoffreyweal/RGME).\n\nExpected program path: '+str(path_to_readmat8))
 
 # Fifth, run the readmat8 program in gauopen_v2 to get the output from it. 
 data_filename = 'matrix_element_output.txt'
