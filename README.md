@@ -286,7 +286,7 @@ if __name__ == '__main__':
 ```
 
 
-### During setup (``bash setup_GauOpen.sh``) I get the error --> ```/usr/bin/python3: symbol lookup error: /usr/bin/python3: undefined symbol: \_Py\_LegacyLocaleDetected```
+### During setup (``bash setup_GauOpen.sh``) I get the error --> ```/usr/bin/python3: symbol lookup error: /usr/bin/python3: undefined symbol: _Py_LegacyLocaleDetected```
 
 This also seems to be due to running invalid versions of Python and GCC. Try using older versions of these programs, and check the ```f2py3``` program, and potentially change the first line from ``#!/usr/bin/python3`` to ``#!/usr/bin/env python3``:
 
