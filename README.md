@@ -253,7 +253,7 @@ AssertionError
 make: *** [qc.make:31: qcmatrixio.cpython-34m.so] Error 1
 ```
 
-Potential Solution: This seems to be caused by using a too modern version of python. Here, you can see that Python 3.8.1 was used by f2py3. As you can see in the top part of the error message above: 
+**Potential Solution**: This seems to be caused by using a too modern version of python. Here, you can see that Python 3.8.1 was used by f2py3. As you can see in the top part of the error message above: 
 
 ```
 Traceback (most recent call last):
