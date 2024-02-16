@@ -140,6 +140,9 @@ Run the RGME program in the terminal. Do this by running the following command i
 get_gaussian_matrix_elements.py matrix_data.dat
 ```
 
+where ``matrix_data.txt`` is the file that the matrix data from Gaussian was recorded into.
+
+
 ---
 **NOTE**
 
@@ -153,8 +156,6 @@ module load python/3.6.8
 
 ---
 
-
-where ``matrix_data.txt`` is the file that the matrix data from Gaussian was recorded into.
 
 ### 3: You Have Your Data
 
