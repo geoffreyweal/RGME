@@ -45,6 +45,8 @@ This is commonly used in computer clusters like those that use the ``SLURM`` sch
 
 The Fortran compiler used in this example is GCC. Change this to your Fortran compiler if needed.
 
+NOTE: It seems to be important that the version of GCC and Python that you use to setup the RGME program are the same that you use to run the RGME program. 
+
 ## How To Use This Program
 
 ### 1: Run Gaussian
