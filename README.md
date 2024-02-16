@@ -134,11 +134,25 @@ echo "End of job"
 
 ### 2: Run the RGME program
 
-Run the RGME program in the terminal. Do this by running the following command in te terminal:
+Run the RGME program in the terminal. Do this by running the following command in the terminal:
 
 ``` bash
 get_gaussian_matrix_elements.py matrix_data.dat
 ```
+
+---
+**NOTE**
+
+If you have any problems when running this step, try changing the version of GCC and python that you used when running the ``setup_GauOpen.sh`` script. For me this was: 
+
+```bash
+module load GCCcore/5.4.0
+module load GCC/5.4.0
+module load python/3.6.8
+```
+
+---
+
 
 where ``matrix_data.txt`` is the file that the matrix data from Gaussian was recorded into.
 
