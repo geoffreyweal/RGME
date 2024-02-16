@@ -183,7 +183,7 @@ unzip gauopen_v2.zip
 
 ## Known issues
 
-### During setup I get the error --> assert parents[-3][0] == 'vars': AssertionError
+### During setup I get the error --> ```assert parents[-3][0] == 'vars': AssertionError```
 
 When setting up the ``bash setup_GauOpen.sh`` script. I get something like the following error:
 
@@ -286,7 +286,7 @@ if __name__ == '__main__':
 ```
 
 
-### During setup (``bash setup_GauOpen.sh``) I get the error --> /usr/bin/python3: symbol lookup error: /usr/bin/python3: undefined symbol: \_Py\_LegacyLocaleDetected
+### During setup (``bash setup_GauOpen.sh``) I get the error --> ```/usr/bin/python3: symbol lookup error: /usr/bin/python3: undefined symbol: \_Py\_LegacyLocaleDetected```
 
 This also seems to be due to running invalid versions of Python and GCC. Try using older versions of these programs, and check the ```f2py3``` program, and potentially change the first line from ``#!/usr/bin/python3`` to ``#!/usr/bin/env python3``:
 
@@ -301,7 +301,7 @@ if __name__ == '__main__':
     sys.exit(main())
 ```
 
-Older version of Python and GCC that worked for me
+Older version of Python and GCC that worked for me are:
 
 ```bash
 module load GCCcore/5.4.0
