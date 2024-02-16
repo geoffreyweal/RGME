@@ -310,7 +310,7 @@ module load python/3.6.8
 ```
 
 
-### During running get_gaussian_matrix_elements.py I see the error --> error while loading shared libraries: libgfortran.so.3: cannot open shared object file: No such file or directory
+### During running ```get_gaussian_matrix_elements.py``` I see the error --> error while loading shared libraries: libgfortran.so.3: cannot open shared object file: No such file or directory
 
 This is likely because you are using an invalid version of Python and GCC. Try using the same version you used for setting up the ``bash setup_GauOpen.sh``. This problem seems to be particularly affected by the version of GCC and GCCcore you used during the ``bash setup_GauOpen.sh`` step, however your choice of python can also change the version of GCC and GCCcore that you used. Check what versions of GCC, GCCcore, and Python you used after installation of ``bash setup_GauOpen.sh`` by running the command below after running the ``bash setup_GauOpen.sh`` step:
 
