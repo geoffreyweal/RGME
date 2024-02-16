@@ -47,11 +47,6 @@ The Fortran compiler used in this example is GCC. Change this to your Fortran co
 
 NOTE: It seems to be important that you use the same version of GCC and Python to setup and run the RGME program. I.e, if you use GCC/5.4.0 and python/3.6.8 to setup us the RGME program, make sure you also load these versions of python and GCC before running the RGME (``get_gaussian_matrix_elements.py``) program. 
 
-
-that you use to run the RGME program
-
- version of GCC and Python that you use to setup the RGME program are the same that you use to run the RGME program. 
-
 ## How To Use This Program
 
 ### 1: Run Gaussian
