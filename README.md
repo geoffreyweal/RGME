@@ -270,7 +270,9 @@ if __name__ == '__main__':
     sys.exit(main())
 ```
 
-However, for other people ths program changes the ```#!/usr/bin/python3``` line with ```#!/home/software/apps/python/3.8.1/bin/python3.8```. Try changing this to ```#!/usr/bin/env python3``` and run your program with Python 3.6 (or Python 3.6.8) and rerun the `bash setup_GauOpen.sh`` script:
+NOTE: for some people the first line of this program might be different. For example, rather than ```#!/usr/bin/python3```, the first line might be ```#!/home/software/apps/python/3.8.1/bin/python3.8```. 
+
+Try changing this to ```#!/usr/bin/env python3``` and run your program with Python 3.6 (or Python 3.6.8) and rerun the `bash setup_GauOpen.sh`` script:
 
 ```python
 #!/usr/bin/env python3
