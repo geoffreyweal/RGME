@@ -25,7 +25,7 @@ To install this program, perform the following in your terminal
 4. Type into the terminal ``echo 'export PATH='"$PWD"'/RGME:$PATH' >> ~/.bashrc``. This will allow you computer to know where the files to run are located.
 5. Type into the terminal ``source ~/.bashrc``. This will refresh your terminal so it recognises this program.
 6. Type ``which get_gaussian_matrix_elements.py`` into the terminal. This should give the path to ``get_gaussian_matrix_elements.py``. 
-  * If you get the message ``/usr/bin/which: no get_gaussian_matrix_elements.py in ...``, there is probably a problem with the path you gave to ``~/.bashrc``. Open your ``~/.bashrc`` and check if the path to the RGME program you gave in step 4 is pointing to the ``RGME`` folder correctly. 
+    * If you get the message ``/usr/bin/which: no get_gaussian_matrix_elements.py in ...``, there is probably a problem with the path you gave to ``~/.bashrc``. Open your ``~/.bashrc`` and check if the path to the RGME program you gave in step 4 is pointing to the ``RGME`` folder correctly. 
 7. Change directory into the RGME folder: ``cd RGME``
 8. Run the bash script called ``setup_GauOpen.sh``: ``bash setup_GauOpen.sh``. This will download the ``gauopen_v2`` program from Gaussian and compile the ``readmat8`` Gaussian program. This ``readmat8`` program is used by RGME. See below for more information about this script. 
 
