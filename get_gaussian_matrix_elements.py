@@ -36,7 +36,6 @@ if not os.path.exists(path_to_readmat8):
 '''
 # Fifth, run the readmat8 program in gauopen_v2 to get the output from it. 
 data_filename = 'matrix_element_output.txt'
-'''
 print('Running readmat8 program on: '+str(filepath))
 print('Saving raw data into '+str(matrix_elements_foldername+'/'+data_filename))
 with open(matrix_elements_foldername+'/'+data_filename, "w") as outfile:
@@ -51,7 +50,6 @@ if not result.returncode == 0:
 	print('================================================================================')
 	print()
 print('Finished running readmat8 program')
-'''
 
 # Sixth, extract the data from matrix_element_output.txt and save the matrices as csv files.
 print('Extracting data into CSV files')
